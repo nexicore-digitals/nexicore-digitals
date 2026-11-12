@@ -63,6 +63,15 @@ The app is a one-page premium startup presentation designed for low-friction sca
 - Site URL discovery is declared in [sitemap.xml](/home/owen/nexicore/repos/nexicore-digitals/public/sitemap.xml).
 - AI crawler/readability context is available at [llms.txt](/home/owen/nexicore/repos/nexicore-digitals/public/llms.txt).
 
+## Vercel deployment (recommended)
+
+- Vercel project settings are defined in [vercel.json](/home/owen/nexicore/repos/nexicore-digitals/vercel.json):
+  - install: `pnpm install --frozen-lockfile`
+  - build: `pnpm build`
+  - output: `dist`
+- Import the repository in Vercel and deploy from the default branch.
+- Attach your custom domain in Vercel Project Settings → Domains and keep DNS records exactly as Vercel provides.
+
 ## GitHub Pages deployment
 
 A GitHub Actions workflow is included at:
@@ -72,7 +81,10 @@ A GitHub Actions workflow is included at:
 What it does:
 
 1. Installs dependencies with pnpm
-2. Builds the app with a dynamic Vite base path (works for both `owner.github.io` and project pages)
+2. Builds the app with a dynamic Vite base path:
+   - `/` when a custom domain is defined in `public/CNAME`
+   - `/` for `owner.github.io` repos
+   - `/<repo-name>/` for project pages without a custom domain
 3. Uploads `dist/` as Pages artifact
 4. Deploys to GitHub Pages
 5. Uses pnpm version from `packageManager` in [package.json](/home/owen/nexicore/repos/nexicore-digitals/package.json) to avoid CI version mismatch
@@ -81,6 +93,7 @@ To use it:
 
 1. In GitHub repository settings, set **Pages source** to **GitHub Actions**
 2. Push to `main` or run the workflow manually from the Actions tab
+3. For custom domains, keep [CNAME](/home/owen/nexicore/repos/nexicore-digitals/public/CNAME) committed with your exact domain
 
 ## Source references
 
