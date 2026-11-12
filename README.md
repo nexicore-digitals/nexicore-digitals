@@ -54,6 +54,7 @@ The app is a one-page premium startup presentation designed for low-friction sca
   1. `lint-staged` runs Prettier on staged files.
   2. `pnpm lint` runs repository lint checks.
 - If hooks are missing in a fresh clone, run `pnpm prepare`.
+- PR CI checks run in [pr-checks.yml](/home/owen/nexicore/repos/nexicore-digitals/.github/workflows/pr-checks.yml) and enforce `pnpm lint` + `pnpm build` on pull requests to `main`/`master`.
 
 ## Crawl and metadata setup
 
@@ -74,6 +75,7 @@ What it does:
 2. Builds the app with a dynamic Vite base path (works for both `owner.github.io` and project pages)
 3. Uploads `dist/` as Pages artifact
 4. Deploys to GitHub Pages
+5. Uses pnpm version from `packageManager` in [package.json](/home/owen/nexicore/repos/nexicore-digitals/package.json) to avoid CI version mismatch
 
 To use it:
 
