@@ -180,9 +180,9 @@ export const investorDeck = [
   },
   {
     label: 'Differentiation',
-    title: 'Founder-led execution with direct technical accountability.',
+    title: 'Direct technical accountability for execution quality.',
     detail:
-      'This is not a generic agency model. It is a hands-on engineering partnership aligned with business outcomes and delivery quality.',
+      'This is not a generic agency model. It is hands-on engineering delivery aligned with business outcomes and delivery quality.',
     accent:
       'Clients get strategic guidance with technical accountability from the same lead decision-maker.',
   },

@@ -1,101 +1,94 @@
-# Nexicore Digitals
+# Nexicore Digitals Website
 
-Main web experience for **Nexicore Digital Hub (Nexicore Digitals)**.
+This repository powers the public website for **Nexicore Digital Hub (Nexicore Digitals)**.
 
-## Scripts
+## What this site is for (business view)
 
-- `pnpm dev` - start local development server
-- `pnpm build` - run TypeScript build and Vite production build
-- `pnpm lint` - run oxlint checks
-- `pnpm format` - format repository files with Prettier
-- `pnpm format:check` - validate formatting without modifying files
-- `pnpm preview` - preview production build locally
+The website is designed to help business, technical, and investor audiences quickly understand:
 
-## Current experience structure
+- what Nexicore builds
+- how engagement works
+- what outcomes can be expected
+- how to start a real enquiry
 
-The app is a one-page premium startup presentation designed for low-friction scanning by business, technical, and investor audiences:
+It is intentionally structured for fast scanning on mobile and desktop, with visual-first sections before deep text.
 
-1. **Hero overview** - clear value proposition and primary CTA.
-2. **Audience quick paths** - direct links for:
-   - business leaders (`#context`)
-   - technical teams (`#technology`)
-   - investors (`#proof`)
-3. **Business context card** - capability scope, delivery ownership, compliance posture, trust baseline, and representative outcomes.
-4. **Engagement process card** - 3-step process from initial context to execution brief, plus enterprise/investor CTA tracks.
-5. **Case-study proof row** - challenge, intervention, and measurable outcomes for representative engagements.
-6. **Product dashboard section** - visual operating snapshot and priorities.
-7. **Services and technology sections** - deeper capability and implementation rationale.
-8. **Enquiry section (`#enquiry`)** - real submission form + WhatsApp business chat path.
-9. **Founder section** - leadership profile and trust signals.
+## How visitors can engage
 
-## Real enquiry implementation
+Visitors can use either route:
 
-- Form submissions are posted to **FormSubmit** via:
-  - `https://formsubmit.co/info@nexicore.dev`
-- First submission requires inbox activation on FormSubmit for `info@nexicore.dev`.
-- Users can choose:
-  - enquiry track (general / enterprise / investor / service-specific)
-  - service interest
-  - timeline and project brief
-- WhatsApp Business fallback is available throughout the UI:
-  - `https://wa.me/2348102573331`
+1. **Structured enquiry form** (project, enterprise, investor, or service-specific)
+2. **Direct WhatsApp Business chat** for quick alignment
 
-## UX and performance notes
+Primary contact destination:
 
-- Legacy 3D/WebGL and terminal-like interaction layers were removed to reduce fragility and improve accessibility.
-- Hero mockup is optimized as WebP for faster LCP.
-- Responsive overflow guards are in place to prevent mobile horizontal scrolling.
-- Founder portrait crop is tuned for mobile so the face remains visible.
+- `info@nexicore.dev`
+- `+234 810 257 3331`
 
-## Developer quality gates (Husky)
+## Experience highlights
 
-- A pre-commit hook is configured through Husky at [pre-commit](/home/owen/nexicore/repos/nexicore-digitals/.husky/pre-commit).
-- On each commit:
-  1. `lint-staged` runs Prettier on staged files.
-  2. `pnpm lint` runs repository lint checks.
-- If hooks are missing in a fresh clone, run `pnpm prepare`.
-- PR CI checks run in [pr-checks.yml](/home/owen/nexicore/repos/nexicore-digitals/.github/workflows/pr-checks.yml) and enforce `pnpm lint` + `pnpm build` on pull requests to `main`/`master`.
+- **Visual-first section flow** across story, dashboard, services, technology, proof, and enquiry.
+- **Progressive image loading** for section visuals:
+  - lightweight blurred preview first
+  - smooth transition to full image after load
+  - responsive `srcset` delivery for smaller screens and slow networks
+- **Staged section rendering** so above-the-fold story/dashboard render first, then deeper sections mount shortly after for smoother startup on low-power devices.
+- **Local technology logo assets** in `public/brand/tech-icons` so stack badges stay visual without shipping a large icon runtime bundle.
+- **Trust-first messaging** with clear proof blocks and verification signals.
 
-## Crawl and metadata setup
+## Trust and verification content
 
-- Core SEO and social meta tags are defined in [index.html](/home/owen/nexicore/repos/nexicore-digitals/index.html) (description, robots, Open Graph, Twitter).
-- Crawl policy is declared in [robots.txt](/home/owen/nexicore/repos/nexicore-digitals/public/robots.txt).
-- Site URL discovery is declared in [sitemap.xml](/home/owen/nexicore/repos/nexicore-digitals/public/sitemap.xml).
-- AI crawler/readability context is available at [llms.txt](/home/owen/nexicore/repos/nexicore-digitals/public/llms.txt).
+The site includes verification-oriented content such as:
 
-## Vercel deployment (recommended)
+- CAC registration references
+- Corporate status and readiness signals
+- Founder profile and focus areas
 
-- Vercel project settings are defined in [vercel.json](/home/owen/nexicore/repos/nexicore-digitals/vercel.json):
-  - install: `pnpm install --frozen-lockfile`
-  - build: `pnpm build`
-  - output: `dist`
-- Import the repository in Vercel and deploy from the default branch.
-- Attach your custom domain in Vercel Project Settings → Domains and keep DNS records exactly as Vercel provides.
+## Technical quick start
 
-## GitHub Pages deployment
+### Scripts
 
-A GitHub Actions workflow is included at:
+- `pnpm dev` – run local development server
+- `pnpm build` – run TypeScript + Vite production build
+- `pnpm lint` – run oxlint checks
+- `pnpm format` – format files with Prettier
+- `pnpm format:check` – validate formatting only
+- `pnpm preview` – preview production build
 
-- `.github/workflows/deploy-pages.yml`
+### Quality checks
 
-What it does:
+- Husky pre-commit hook runs formatting and lint checks.
+- Pull request checks validate:
+  - `pnpm lint`
+  - `pnpm build`
 
-1. Installs dependencies with pnpm
-2. Builds the app with a dynamic Vite base path:
-   - `/` when a custom domain is defined in `public/CNAME`
-   - `/` for `owner.github.io` repos
-   - `/<repo-name>/` for project pages without a custom domain
-3. Uploads `dist/` as Pages artifact
-4. Deploys to GitHub Pages
-5. Uses pnpm version from `packageManager` in [package.json](/home/owen/nexicore/repos/nexicore-digitals/package.json) to avoid CI version mismatch
+## Deployment
 
-To use it:
+### Recommended: Vercel
 
-1. In GitHub repository settings, set **Pages source** to **GitHub Actions**
-2. Push to `main` or run the workflow manually from the Actions tab
-3. For custom domains, keep [CNAME](/home/owen/nexicore/repos/nexicore-digitals/public/CNAME) committed with your exact domain
+Configured through `vercel.json`:
+
+- install: `pnpm install --frozen-lockfile`
+- build: `pnpm build`
+- output: `dist`
+
+### Optional: GitHub Pages
+
+Workflow file: `.github/workflows/deploy-pages.yml`
+
+Includes dynamic base-path handling and uses pnpm version from `package.json`.
+
+## Project structure (high level)
+
+- `src/App.tsx` – top-level layout and orchestration
+- `src/components/landing-sections.tsx` – section-level presentation components
+- `src/components/ProgressiveImage.tsx` – progressive image loading component
+- `src/components/SectionVisual.tsx` – reusable section visual wrapper
+- `src/landing/constants.ts` – UI/config constants and shared helpers
+- `src/content.ts` – primary business/marketing content blocks
+- `public/brand/` – runtime brand assets
 
 ## Source references
 
-- Strategic brief PDF: `docs/Nexicore Digital Hub - Company Pitch, 3D App Architecture & Service Matrix - Google Docs.pdf`
-- Runtime brand assets: `public/brand/`
+- Strategic brief PDF:
+  - `docs/Nexicore Digital Hub - Company Pitch, 3D App Architecture & Service Matrix - Google Docs.pdf`
