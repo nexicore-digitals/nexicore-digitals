@@ -1,0 +1,63 @@
+{
+  "name": "nexicore-digitals",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Premium one-page venture and product experience for Nexicore Digitals.",
+  "author": "Nexicore Digitals",
+  "license": "MIT",
+  "homepage": "https://nexicore.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nexicore-digitals/nexicore-digitals.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nexicore-digitals/nexicore-digitals/issues"
+  },
+  "keywords": [
+    "nexicore",
+    "startup",
+    "investor",
+    "venture",
+    "react",
+    "vite"
+  ],
+  "packageManager": "pnpm@12.18.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "format": "prettier --write . --ignore-unknown",
+    "format:check": "prettier --check . --ignore-unknown",
+    "precommit": "lint-staged && pnpm lint",
+    "preview": "vite preview --host 0.0.0.0",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md,css,html,yml,yaml}": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "lucide-react": "^0.542.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@rolldown/plugin-babel": "^0.3.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/babel__core": "^7.20.5",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "oxlint": "^1.90.0",
+    "prettier": "^3.9.10",
+    "tailwindcss": "^4.3.5",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.6"
+  }
+}
